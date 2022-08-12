@@ -96,13 +96,13 @@ namespace TcddBiletBot.TelegramBot
                     return;
                 }
 
-                if (DateTime.Now.Date.AddDays(10) < DateTime.Parse(seferBilgileri[2]) && DateTime.Now.Date.AddDays(10) < DateTime.Parse(seferBilgileri[5]))
+                if (DateTime.Now.Date.AddDays(10) < DateTime.Parse(seferBilgileri[2]) || DateTime.Now.Date.AddDays(10) < DateTime.Parse(seferBilgileri[5]))
                 {
                     await send.Message(client, update, "Sefer saatlerini kontrol edin! Maksimum 10 gün sonrasında ki biletler için botu çalıştırabilirsiniz!");
                     return;
                 }
 
-                if (DateTime.Parse(seferBilgileri[2]) < DateTime.Now && DateTime.Parse(seferBilgileri[5]) < DateTime.Now && DateTime.Parse(seferBilgileri[5]) < DateTime.Parse(seferBilgileri[2]))
+                if (DateTime.Parse(seferBilgileri[2]) < DateTime.Now || DateTime.Parse(seferBilgileri[5]) < DateTime.Now || DateTime.Parse(seferBilgileri[5]) < DateTime.Parse(seferBilgileri[2]))
                 {
                     await send.Message(client, update, "Sefer saatlerini kontrol edin! Geçmiş zamanı veya dönüş tarihi gidiş tarihinden önce olamaz!");
                     return;

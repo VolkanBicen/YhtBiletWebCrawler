@@ -42,5 +42,12 @@ namespace TcddBiletBot.TelegramBot
 
         }
 
+        public async Task MessageOnlyClientId(long clientId, string messageText)
+        {
+            var botClient = new TelegramBotClient("5194916816:AAHFHM-qULbrsZvsAokjgkbKVwgLgiQ8rhM");
+            await botClient.SendTextMessageAsync(clientId, messageText);
+
+        }
+
     }
 }

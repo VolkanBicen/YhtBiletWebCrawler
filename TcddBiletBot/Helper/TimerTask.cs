@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using TcddBiletBot.TelegramBot;
 using TcddBiletBot.Ticket;
 
 namespace TcddBiletBot.Helper
@@ -21,9 +22,6 @@ namespace TcddBiletBot.Helper
                 {
                     for (int i = 0; i < instance.TicketList.Count; i++)
                     {
-                        instance.TicketList[i].Sefer.GidisTarihi = "10.08.2022";
-                        instance.TicketList[i].Sefer.DonusTarihi = "12.08.2022";
-
                         System.IO.File.AppendAllText("Work/queue.txt", DateTime.Now + " - " + instance.TicketList[i].Update.Message.Chat.Id + " - " + instance.TicketList[i].Update.Message.Chat.Username + " - " + instance.TicketList[i].Update.Message.Text + Environment.NewLine);
 
                         if (DateTime.Parse(instance.TicketList[i].Sefer.GidisTarihi) > DateTime.Now && DateTime.Parse(instance.TicketList[i].Sefer.DonusTarihi) > DateTime.Now)
@@ -32,7 +30,10 @@ namespace TcddBiletBot.Helper
                         }
                         else
                         {
+                            Send send = new Send();
+                         
                             instance.TicketList.Remove(instance.TicketList[i]);
+                          await send.MessageOnlyClientId(instance.TicketList[i].Update.Message.Chat.Id,"Tarih Formatı yanlış! İşleminiz durduruldu!");
                         }
                     }
 
